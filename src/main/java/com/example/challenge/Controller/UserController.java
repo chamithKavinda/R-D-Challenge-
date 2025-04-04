@@ -4,10 +4,7 @@ import com.example.challenge.Model.UserDTO;
 import com.example.challenge.Service.WeavyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 
@@ -20,5 +17,10 @@ public class UserController {
     @PostMapping
     public ResponseEntity<String> createUser(@RequestBody UserDTO userDTO) throws IOException {
         return ResponseEntity.ok(weavyService.createUser(userDTO));
+    }
+
+    @GetMapping
+    public ResponseEntity<String> ListUsers() throws IOException {
+        return ResponseEntity.ok(weavyService.ListUsers());
     }
 }

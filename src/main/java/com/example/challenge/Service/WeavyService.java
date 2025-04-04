@@ -1,5 +1,6 @@
 package com.example.challenge.Service;
 
+import com.example.challenge.Model.UserDTO;
 import net.minidev.json.JSONObject;
 import okhttp3.*;
 import org.springframework.beans.factory.annotation.Value;
@@ -37,6 +38,16 @@ public class WeavyService {
         return executeRequest(request);
     }
 
+    //list users
+    public String ListUsers(UserDTO userDTO) throws IOException {
+        Request request = new Request.Builder()
+                .url(baseUrl)
+                .get()
+                .addHeader("Authorization", "Bearer" + bearerToken)
+                .build();
+
+        return executeRequest(request);
+    }
     private String executeRequest(Request request) throws IOException {
         try (Response response = httpClient.newCall(request).execute()) {
             return response.body().string();
